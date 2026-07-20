@@ -1,210 +1,200 @@
-# Quiz CLI
+# EliteA Quiz CLI
 
-An interactive command-line quiz game built with Node.js. It lets users choose a category, answer multiple-choice questions, get instant feedback, and review incorrect answers at the end.
+EliteA is a beginner-friendly **terminal-based quiz game** built with **Node.js**.  
+It lets you choose a quiz category, answer multiple-choice questions from the command line, and see your final score at the end.
 
-## Project Overview
+The app is designed as a small, easy-to-understand project with a clean structure, making it a great example of how to build interactive CLI tools in JavaScript.
 
-Quiz CLI is a beginner-friendly terminal application designed to demonstrate core Node.js and JavaScript concepts, including:
-
-- ES Modules (`import` / `export`)
-- async/await
-- built-in Node.js file and terminal APIs
-- object-oriented programming with classes
-- input validation and reusable helpers
-- ANSI-colored terminal output
-
-The app loads quiz data from a JSON file, runs a guided quiz flow, and shows a score summary when finished.
+---
 
 ## Features
 
-- Category-based quizzes
-- Randomized question order
-- Select how many questions to answer
-- Colored terminal output
-- Progress tracking
-- Final score summary
-- Review of missed questions
-- Replay support
+- **Interactive CLI experience** using Node.js
+- **Category selection** before starting a quiz
+- **Multiple quiz questions** loaded from JSON data
+- **Scoring system** to track correct answers
+- **Progress tracking** during the quiz
+- **Replay support** so you can play again after finishing
+- **Styled terminal output** using ANSI colors for a better user experience
 
-## File Structure
+---
 
-```text
+## Project Structure
+
+```txt
 test-app/
-├─ index.js
-├─ package.json
-├─ data/
-│  └─ questions.json
-└─ src/
-   ├─ colors.js
-   ├─ input.js
-   └─ quiz.js
+├── index.js            # CLI entry point and game loop
+├── package.json        # Node.js metadata and scripts
+├── data/
+│   └── questions.json  # Quiz categories and questions
+└── src/
+    ├── colors.js       # ANSI color helpers
+    ├── input.js        # Readline-based input helpers
+    └── quiz.js         # Quiz logic, scoring, and results
 ```
 
-### What each file does
+### Main files
 
-- `index.js`  
-  Main entry point. It loads quiz data, manages the game flow, and handles replay.
+- **`index.js`**  
+  Starts the app, shows the banner, handles category selection, runs the quiz, and supports replay.
 
-- `src/quiz.js`  
-  Contains the `Quiz` class. This file manages question order, scoring, progress, and results.
+- **`src/quiz.js`**  
+  Contains the `Quiz` class that manages the quiz flow, scoring, and answer tracking.
 
-- `src/input.js`  
-  Provides reusable terminal input helpers for prompts, selections, confirmations, and pauses.
+- **`src/input.js`**  
+  Handles terminal prompts, menus, confirmations, and pauses using Node’s built-in `readline` module.
 
-- `src/colors.js`  
-  Small helper module for ANSI color styling in the terminal.
+- **`src/colors.js`**  
+  Provides small helper functions for colored and styled terminal text.
 
-- `data/questions.json`  
-  Stores quiz questions grouped by category.
+- **`data/questions.json`**  
+  Stores the quiz content grouped by category.
 
-## Requirements
+---
 
-- Node.js 18 or newer
-- No external dependencies are required
+## Getting Started
 
-## Setup Instructions
+Follow these steps to run the quiz locally.
 
-### 1. Clone the repository
+### 1) Install Node.js
+
+Make sure you have **Node.js** installed on your computer.
+
+- Recommended: Node.js 18 or newer
+- You can check your version with:
 
 ```bash
-git clone <repository-url>
-cd eliteA/test-app
+node -v
+npm -v
 ```
 
-### 2. Install dependencies
+---
+
+### 2) Open the project folder
+
+Go into the `test-app` directory:
+
+```bash
+cd test-app
+```
+
+---
+
+### 3) Install dependencies
+
+Install the project dependencies with npm:
 
 ```bash
 npm install
 ```
 
-> This project does not require third-party packages, but running `npm install` keeps the project ready if dependencies are added later.
+> If the project does not require external packages, this step will still prepare the local environment and create `node_modules` if needed.
 
-### 3. Start the quiz
+---
 
-```bash
-npm start
-```
+### 4) Start the quiz
 
-This runs:
-
-```bash
-node index.js
-```
-
-## Usage Examples
-
-### Start the quiz
+Run the app with:
 
 ```bash
 npm start
 ```
 
-### Example flow
+This will launch the quiz in your terminal.
 
-1. A welcome banner is shown
-2. You choose a quiz category
-3. You choose how many questions to answer
-4. Each question is displayed with multiple-choice options
-5. Your answer is checked immediately
-6. A final score is shown
-7. Incorrect answers are reviewed
-8. You can choose to play again
+---
 
-### Example categories
+### 5) Play the game
+
+Once the app starts:
+
+1. Pick a quiz category
+2. Answer each question from the terminal
+3. See your score at the end
+4. Choose whether you want to play again
+
+---
+
+## Available Scripts
+
+From inside `test-app`, you can use:
+
+```bash
+npm start
+npm test
+```
+
+- **`npm start`** — launches the quiz
+- **`npm test`** — runs the project’s test script, if configured
+
+---
+
+## Quiz Data
+
+Questions are stored in:
+
+```txt
+test-app/data/questions.json
+```
+
+The data is organized by category, such as:
 
 - JavaScript Basics
 - Node.js Fundamentals
 - General Programming
 
-## How It Works
+Each category contains a list of questions and answers used by the quiz engine.
 
-### Quiz flow
+---
 
-- The application reads quiz data from `data/questions.json`
-- The user selects a category
-- The app builds a quiz from the chosen category
-- Questions are shuffled before starting
-- Each answer is validated against the correct option
-- The final score is calculated and displayed
-- Missed questions are shown with explanations
+## How the App Works
 
-### Input handling
+At a high level, the application follows this flow:
 
-The `src/input.js` module simplifies terminal interaction by providing helpers such as:
+1. Load quiz questions from the JSON file
+2. Display a welcome banner
+3. Ask the user to choose a category
+4. Run through the selected quiz questions
+5. Track correct answers and progress
+6. Show the final result
+7. Ask if the user wants to replay
 
-- prompt input
-- menu selection
-- yes/no confirmation
-- press-enter pause
-
-### Scoring
-
-The `Quiz` class tracks:
-
-- current question index
-- correct answers
-- incorrect answers
-- total score
-
-## Quiz Data Format
-
-Questions are stored in JSON and grouped by category.
-
-Example question structure:
-
-```json
-{
-  "question": "What keyword is used to declare a constant in JavaScript?",
-  "options": ["var", "let", "const", "define"],
-  "answer": 2,
-  "explanation": "The `const` keyword declares a constant value that cannot be reassigned."
-}
-```
-
-### Expected fields
-
-- `question`: the text shown to the user
-- `options`: array of possible answers
-- `answer`: index of the correct option
-- `explanation`: extra information shown after the quiz for wrong answers
-
-## Scripts
-
-From `package.json`:
-
-- `npm start` — run the quiz application
-- `npm test` — run the built-in Node.js test runner
-
-## Development Notes
-
-- The project uses `"type": "module"`
-- The app is written with only built-in Node.js functionality
-- Questions can be expanded by editing `data/questions.json`
-- The code is structured to be easy to extend for beginners
-
-## Possible Improvements
-
-Ideas for future enhancements:
-
-- add more quiz categories
-- add difficulty levels
-- store high scores
-- add timer-based questions
-- support text input answers
-- load questions from an API
-- add more tests
+---
 
 ## Troubleshooting
 
-### `node` command not found
-Install Node.js 18+ and make sure it is available in your terminal.
+### `npm start` does not work
+Make sure you are inside the `test-app` folder before running the command:
 
-### Quiz does not start
-Check for syntax errors in `index.js` or invalid JSON in `data/questions.json`.
+```bash
+cd test-app
+npm start
+```
 
-### Questions are not loading
-Verify the JSON file path and make sure the file contains valid JSON.
+### Node.js command not found
+Install Node.js from the official website and reopen your terminal afterward.
+
+### Quiz does not load questions
+Check that `data/questions.json` exists and that the JSON format is valid.
+
+---
 
 ## License
 
-This project is licensed under the MIT License.
+No license information was provided in the repository summary.
+
+---
+
+## Contributing
+
+If you want to extend this project, a few easy ideas are:
+
+- add more question categories
+- increase question difficulty
+- add timers for each question
+- save high scores
+- improve the terminal UI
+
+---
+
+Enjoy the quiz and have fun learning with the CLI!
