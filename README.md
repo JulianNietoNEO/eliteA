@@ -1,32 +1,20 @@
 # Quiz CLI
 
-An interactive command-line quiz game built with Node.js. It lets users choose a category, answer multiple-choice questions, get instant feedback, and review incorrect answers at the end.
-
-## Project Overview
-
-Quiz CLI is a beginner-friendly terminal application designed to demonstrate core Node.js and JavaScript concepts, including:
-
-- ES Modules (`import` / `export`)
-- async/await
-- built-in Node.js file and terminal APIs
-- object-oriented programming with classes
-- input validation and reusable helpers
-- ANSI-colored terminal output
-
-The app loads quiz data from a JSON file, runs a guided quiz flow, and shows a score summary when finished.
+Quiz CLI is an interactive Node.js terminal game that lets you test your knowledge with multiple-choice questions. You can choose a category, decide how many questions to answer, and get instant feedback with explanations at the end.
 
 ## Features
 
-- Category-based quizzes
+- Category-based quiz selection
 - Randomized question order
-- Select how many questions to answer
+- Choose how many questions to answer
 - Colored terminal output
-- Progress tracking
-- Final score summary
-- Review of missed questions
+- Score tracking
+- Progress updates while playing
+- Review of incorrect answers
 - Replay support
+- Beginner-friendly command-line experience
 
-## File Structure
+## Project Structure
 
 ```text
 test-app/
@@ -40,50 +28,42 @@ test-app/
    └─ quiz.js
 ```
 
-### What each file does
+## Main Files
 
-- `index.js`  
-  Main entry point. It loads quiz data, manages the game flow, and handles replay.
-
-- `src/quiz.js`  
-  Contains the `Quiz` class. This file manages question order, scoring, progress, and results.
-
-- `src/input.js`  
-  Provides reusable terminal input helpers for prompts, selections, confirmations, and pauses.
-
-- `src/colors.js`  
-  Small helper module for ANSI color styling in the terminal.
-
-- `data/questions.json`  
-  Stores quiz questions grouped by category.
+- `index.js` — Entry point for the CLI application. It loads the quiz data, displays the welcome screen, handles category selection, starts the quiz, and shows the final results.
+- `src/quiz.js` — Contains the `Quiz` class, which manages the quiz flow, scoring, shuffling questions, tracking answers, and showing the final review.
+- `src/input.js` — Wraps Node’s built-in `readline` module and provides helper functions for safe terminal input.
+- `src/colors.js` — Adds ANSI color styling to make the terminal output easier to read and more engaging.
+- `data/questions.json` — Stores all quiz questions grouped by category.
+- `package.json` — Defines the project metadata, module type, and scripts.
 
 ## Requirements
 
-- Node.js 18 or newer
-- No external dependencies are required
+- Node.js 18.0.0 or newer
+- npm (comes with Node.js)
 
-## Setup Instructions
+## Getting Started
 
-### 1. Clone the repository
+1. Clone the repository
 
-```bash
-git clone <repository-url>
-cd eliteA/test-app
-```
+   ```bash
+   git clone <repository-url>
+   cd eliteA/test-app
+   ```
 
-### 2. Install dependencies
+2. Install dependencies
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-> This project does not require third-party packages, but running `npm install` keeps the project ready if dependencies are added later.
+   This project does not use external packages, but running `npm install` prepares the project and creates the lock file if needed.
 
-### 3. Start the quiz
+3. Run the quiz
 
-```bash
-npm start
-```
+   ```bash
+   npm start
+   ```
 
 This runs:
 
@@ -91,64 +71,22 @@ This runs:
 node index.js
 ```
 
-## Usage Examples
+## How to Use
 
-### Start the quiz
+When you start the app, you will:
 
-```bash
-npm start
-```
-
-### Example flow
-
-1. A welcome banner is shown
-2. You choose a quiz category
-3. You choose how many questions to answer
-4. Each question is displayed with multiple-choice options
-5. Your answer is checked immediately
-6. A final score is shown
-7. Incorrect answers are reviewed
-8. You can choose to play again
-
-### Example categories
-
-- JavaScript Basics
-- Node.js Fundamentals
-- General Programming
-
-## How It Works
-
-### Quiz flow
-
-- The application reads quiz data from `data/questions.json`
-- The user selects a category
-- The app builds a quiz from the chosen category
-- Questions are shuffled before starting
-- Each answer is validated against the correct option
-- The final score is calculated and displayed
-- Missed questions are shown with explanations
-
-### Input handling
-
-The `src/input.js` module simplifies terminal interaction by providing helpers such as:
-
-- prompt input
-- menu selection
-- yes/no confirmation
-- press-enter pause
-
-### Scoring
-
-The `Quiz` class tracks:
-
-- current question index
-- correct answers
-- incorrect answers
-- total score
+- See a welcome banner
+- Choose a quiz category
+- Choose how many questions you want to answer
+- Answer questions one by one in the terminal
+- See whether each answer was correct
+- Review your final score
+- Read explanations for incorrect answers
+- Choose whether to play again
 
 ## Quiz Data Format
 
-Questions are stored in JSON and grouped by category.
+Questions are stored in `data/questions.json` and organized by category.
 
 Example question structure:
 
@@ -157,54 +95,53 @@ Example question structure:
   "question": "What keyword is used to declare a constant in JavaScript?",
   "options": ["var", "let", "const", "define"],
   "answer": 2,
-  "explanation": "The `const` keyword declares a constant value that cannot be reassigned."
+  "explanation": "The 'const' keyword declares a block-scoped constant that cannot be reassigned."
 }
 ```
 
-### Expected fields
+## Field Descriptions
 
-- `question`: the text shown to the user
-- `options`: array of possible answers
-- `answer`: index of the correct option
-- `explanation`: extra information shown after the quiz for wrong answers
+- `question` — the question text shown to the user
+- `options` — possible answer choices
+- `answer` — the index of the correct option
+- `explanation` — extra learning information shown after answering
 
-## Scripts
+## Available Scripts
 
 From `package.json`:
 
-- `npm start` — run the quiz application
-- `npm test` — run the built-in Node.js test runner
+- `npm start` — runs the quiz app
+- `npm test` — runs the Node.js test runner
 
 ## Development Notes
 
-- The project uses `"type": "module"`
-- The app is written with only built-in Node.js functionality
-- Questions can be expanded by editing `data/questions.json`
-- The code is structured to be easy to extend for beginners
+This project is a good example of:
 
-## Possible Improvements
-
-Ideas for future enhancements:
-
-- add more quiz categories
-- add difficulty levels
-- store high scores
-- add timer-based questions
-- support text input answers
-- load questions from an API
-- add more tests
+- ES Modules
+- async/await
+- terminal input handling
+- reusable helper functions
+- object-oriented programming with classes
+- working with JSON data in Node.js
 
 ## Troubleshooting
 
-### `node` command not found
-Install Node.js 18+ and make sure it is available in your terminal.
+### The app does not start
 
-### Quiz does not start
-Check for syntax errors in `index.js` or invalid JSON in `data/questions.json`.
+Make sure you are using Node.js 18 or newer:
+
+```bash
+node -v
+```
+
+### The terminal looks broken after exiting
+
+If input gets stuck, press `Ctrl + C` to stop the app and restart it.
 
 ### Questions are not loading
-Verify the JSON file path and make sure the file contains valid JSON.
+
+Check that `data/questions.json` exists and has valid JSON syntax.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT
